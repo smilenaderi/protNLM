@@ -42,10 +42,10 @@ def run_inference(seq):
   names = labeling['output_0'][0].numpy().tolist()
   scores = labeling['output_1'][0].numpy().tolist()
   beam_size = len(names)
-  names = [names[beam_size-1-i].decode().replace(' ', '') for i in range(beam_size)]
-  for i, name in enumerate(names):
-    if re.match(EC_NUMBER_REGEX, name):
-      names[i] = 'EC:' + name
+  # names = [names[beam_size-1-i].decode().replace(' ', ' ') for i in range(beam_size)]
+  # for i, name in enumerate(names):
+  #   if re.match(EC_NUMBER_REGEX, name):
+  #     names[i] = 'EC:' + name
   scores = [np.exp(scores[beam_size-1-i]) for i in range(beam_size)]
   return names, scores
 
@@ -83,5 +83,5 @@ async def create_item(data: ProtNLMDATA):
     names, scores = run_inference(sequence)
     result = {}
     for name, score, i in zip(names, scores, range(len(names))):
-        result[f"Prediction number {i + 1}"]= f"**{name}** with a score of {score:.03f}"
+        result[f"Prediction number {i + 1}"]= f"{name} with a score of {score:.03f}"
     return result

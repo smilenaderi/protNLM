@@ -72,10 +72,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class ProtNLMDATA(BaseModel):
+    query : str = "MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"
 
 @app.post("/compute/")
-async def create_item(query: str, fast: bool = False):
-    sequence = query
+async def create_item(query: ProtNLMDATA):
+    sequence = query.query
     sequence = sequence.replace(' ', '')
 
     names, scores = run_inference(sequence)

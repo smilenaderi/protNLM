@@ -76,8 +76,8 @@ class ProtNLMDATA(BaseModel):
     query : str = "MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"
 
 @app.post("/compute/")
-async def create_item(query: ProtNLMDATA):
-    sequence = query.query
+async def create_item(data: ProtNLMDATA):
+    sequence = data.query
     sequence = sequence.replace(' ', '')
 
     names, scores = run_inference(sequence)

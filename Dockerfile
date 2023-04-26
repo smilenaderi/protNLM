@@ -35,4 +35,4 @@ RUN mkdir ~/.aws/
 RUN mkdir data/
 COPY CREDENTIALS_KEY /root/.aws/credentials
 COPY server.py server.py
-ENTRYPOINT [ "uvicorn", "--host", "0.0.0.0", "--port", "8102","--workers", "4", "server:app"]
+ENTRYPOINT [ "uvicorn", "--host", "0.0.0.0", "--port", "8102","--workers", "1", "server:app"]

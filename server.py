@@ -83,5 +83,5 @@ async def create_item(data: ProtNLMDATA):
     names, scores = run_inference(sequence)
     result = {}
     for name, score, i in zip(names, scores, range(len(names))):
-        result[f"Prediction number {i + 1}"]= {'name':f"{name[12:]}",'score':f"{score:.03f}"}
+        result[f"Prediction number {i + 1}"]= {'name':f"{name[12:]}".strip(),'score':f"{score:.03f}"}
     return result

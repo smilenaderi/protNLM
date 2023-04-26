@@ -1,6 +1,6 @@
 
 FROM tensorflow/tensorflow:2.8.2-gpu
-
+ENV TF_GPU_ALLOCATOR=cuda_malloc_async
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 
 

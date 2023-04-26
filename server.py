@@ -42,7 +42,7 @@ def run_inference(seq):
   names = labeling['output_0'][0].numpy().tolist()
   scores = labeling['output_1'][0].numpy().tolist()
   beam_size = len(names)
-  # names = [names[beam_size-1-i].decode().replace(' ', ' ') for i in range(beam_size)]
+  names = [names[beam_size-1-i].decode() for i in range(beam_size)]
   # for i, name in enumerate(names):
   #   if re.match(EC_NUMBER_REGEX, name):
   #     names[i] = 'EC:' + name
